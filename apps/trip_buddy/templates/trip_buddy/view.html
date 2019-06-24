@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Trip</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{%static 'trip_buddy/css/bootstrap.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'trip_buddy/css/style.css'%}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+        <div class='container-fluid'>
+            <h1 class="navbar-brand">TripBuddy</h1>
+            <a class="navbar-brand ml-auto navbar-link" href="/dashboard">Dashboard</a>
+            <a class="navbar-brand navbar-link" href="/destroy">Logout</a>
+        </div>
+    </nav>
+    <div class="container mt-2">
+        <h1 class="display-5">Destination</h1>
+        <div class="container jumbotron details">
+            <ul>
+                <li><span>Start Date:</span> {{this_trip.start_date}}</li>
+                <li><span>End Date:</span> {{this_trip.end_date}}</li>
+                <li><span>Created On:</span> {{this_trip.created_at}}</li>
+                <li><span>Last Updated:</span> {{this_trip.updated_at}}</li>
+                <li><span>Plan:</span> {{this_trip.plan}}</li>
+                <li><span>Created by:</span> {{this_trip.planner.first_name}}</li>
+            </ul>
+        </div>
+        <div class="container jumbotron mt-5">
+            <ul>
+                <li><span>People who've joined the trip</span></li>
+                <ul>
+                    {% for guest in this_trip.guest.all %}
+                    <li>{{guest.first_name}}</li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
